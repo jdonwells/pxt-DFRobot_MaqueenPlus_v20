@@ -642,3 +642,4 @@ namespace maqueenPlusV2 {
 
         return (r << 16) + (g << 8) + b;
     }
+}
