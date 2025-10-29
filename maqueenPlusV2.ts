@@ -11,8 +11,8 @@ namespace maqueenPlusV2 {
         LeftMotor,
         //% block="right motor"
         RightMotor,
-        //% block="all motor"
-        AllMotor,
+        //% block="both motor"
+        BothMotor,
     };
 
     //Motor direction enumeration selection
