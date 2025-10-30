@@ -329,34 +329,6 @@ namespace maqueenPlusV2 {
         pins.i2cWriteNumber(I2CADDR, adc_index[eline], NumberFormat.Int8LE);
         let buffer = pins.i2cReadBuffer(I2CADDR, 2);
         let data = buffer[1] << 8 | buffer[0]
-        // switch(eline){
-        //     case MyEnumLineSensor.SensorR2:
-        //         pins.i2cWriteNumber(I2CADDR, ADC0_REGISTER, NumberFormat.Int8LE);
-        //         let adc0Buffer = pins.i2cReadBuffer(I2CADDR, 2);
-        //         data = adc0Buffer[1] << 8 | adc0Buffer[0]
-        //     break;
-        //     case MyEnumLineSensor.SensorR1:
-        //         pins.i2cWriteNumber(I2CADDR, ADC1_REGISTER, NumberFormat.Int8LE);
-        //         let adc1Buffer = pins.i2cReadBuffer(I2CADDR, 2);
-        //         data = adc1Buffer[1] << 8 | adc1Buffer[0];
-        //     break;
-        //     case MyEnumLineSensor.SensorM:
-        //         pins.i2cWriteNumber(I2CADDR, ADC2_REGISTER, NumberFormat.Int8LE);
-        //         let adc2Buffer = pins.i2cReadBuffer(I2CADDR, 2);
-        //         data = adc2Buffer[1] << 8 | adc2Buffer[0];
-        //     break;
-        //     case MyEnumLineSensor.SensorL1:
-        //         pins.i2cWriteNumber(I2CADDR, ADC3_REGISTER, NumberFormat.Int8LE);
-        //         let adc3Buffer = pins.i2cReadBuffer(I2CADDR, 2);
-        //         data = adc3Buffer[1] << 8 | adc3Buffer[0];
-        //     break;
-        //     default:
-        //         pins.i2cWriteNumber(I2CADDR, ADC4_REGISTER, NumberFormat.Int8LE);
-        //         let adc4Buffer = pins.i2cReadBuffer(I2CADDR, 2);
-        //         data = adc4Buffer[1] << 8 | adc4Buffer[0];
-        //     break;
-
-        // }
         return data;
     }
     function mydelayUs(unit: number):void{
