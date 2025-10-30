@@ -44,7 +44,7 @@ namespace maqueenPlusV2 {
     //Line sensor selection
     export enum MyEnumLineSensor {
         //% block="L2"
-        SensorL2,
+        SensorL2 = 0,
         //% block="L1"
         SensorL1,
         //% block="M"
@@ -106,13 +106,7 @@ namespace maqueenPlusV2 {
     const ADC2_REGISTER = 0X22;
     const ADC3_REGISTER = 0X20;
     const ADC4_REGISTER = 0X1E;
-    let adc_index = {
-        [MyEnumLineSensor.SensorR2]: ADC0_REGISTER, 
-        [MyEnumLineSensor.SensorR1]: ADC1_REGISTER, 
-        [MyEnumLineSensor.SensorM]: ADC2_REGISTER, 
-        [MyEnumLineSensor.SensorL1]: ADC3_REGISTER, 
-        [MyEnumLineSensor.SensorL2]: ADC4_REGISTER,
-    }
+    let ADC_REGISTERS = [ADC0_REGISTER, ADC1_REGISTER, ADC2_REGISTER, ADC3_REGISTER, ADC4_REGISTER]
     
     const LEFT_LED_REGISTER = 0X0B;
     const RIGHT_LED_REGISTER = 0X0C;
@@ -154,23 +148,11 @@ namespace maqueenPlusV2 {
             Version_v = pins.i2cReadNumber(I2CADDR, NumberFormat.Int8LE);
         }
         let version = readVersion();
+        basic.showString(version)
         if (!version.includes("2.1")) {
-            adc_index = {
-                [MyEnumLineSensor.SensorL2]: ADC0_REGISTER, 
-                [MyEnumLineSensor.SensorL1]: ADC1_REGISTER, 
-                [MyEnumLineSensor.SensorM]: ADC2_REGISTER, 
-                [MyEnumLineSensor.SensorR1]: ADC3_REGISTER, 
-                [MyEnumLineSensor.SensorR2]: ADC4_REGISTER,
-            }
-            basic.showLeds(`
-                    . # # # .
-                    # . . . #
-                    # . . . #
-                    # . . . #
-                    . # # # .
-                    `, 10)
-            basic.pause(500)
+            ADC_REGISTERS = [ADC4_REGISTER, ADC3_REGISTER, ADC2_REGISTER, ADC1_REGISTER, ADC0_REGISTER]
         }
+        basic.showNumber(ADC_REGISTERS[MyEnumLineSensor.SensorL2])
         basic.showLeds(`
                 . . . . .
                 . . . . #
@@ -326,7 +308,7 @@ namespace maqueenPlusV2 {
     //% block="line sensor %eline analog data"
     //% weight=95
     export function readLineSensorData(eline:MyEnumLineSensor):number{
-        pins.i2cWriteNumber(I2CADDR, adc_index[eline], NumberFormat.Int8LE);
+        pins.i2cWriteNumber(I2CADDR, ADC_REGISTERS[eline], NumberFormat.Int8LE);
         let buffer = pins.i2cReadBuffer(I2CADDR, 2);
         let data = buffer[1] << 8 | buffer[0]
         return data;
