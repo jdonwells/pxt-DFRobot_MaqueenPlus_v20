@@ -151,7 +151,6 @@ namespace maqueenPlusV2 {
         if (readVersion().includes("2.1")) {
             ADC_REGISTERS = [ADC4_REGISTER, ADC3_REGISTER, ADC2_REGISTER, ADC1_REGISTER, ADC0_REGISTER]
         }
-        basic.showNumber(ADC_REGISTERS[MyEnumLineSensor.SensorL2])
         basic.showLeds(`
                 . . . . .
                 . . . . #
