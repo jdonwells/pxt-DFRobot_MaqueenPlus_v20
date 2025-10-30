@@ -153,8 +153,8 @@ namespace maqueenPlusV2 {
             pins.i2cWriteNumber(0x10, 0x32, NumberFormat.Int8LE);
             Version_v = pins.i2cReadNumber(I2CADDR, NumberFormat.Int8LE);
         }
-        Version_v = readVersion();
-        if (!Version_v.includes("2.1")) {
+        let version = readVersion();
+        if (!version.includes("2.1")) {
             adc_index = {
                 [MyEnumLineSensor.SensorL2]: ADC0_REGISTER, 
                 [MyEnumLineSensor.SensorL1]: ADC1_REGISTER, 
