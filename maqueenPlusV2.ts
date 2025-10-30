@@ -107,11 +107,11 @@ namespace maqueenPlusV2 {
     const ADC3_REGISTER = 0X20;
     const ADC4_REGISTER = 0X1E;
     let adc_index = {
-        MyEnumLineSensor.SensorR2: ADC0_REGISTER, 
-        MyEnumLineSensor.SensorR1: ADC1_REGISTER, 
-        MyEnumLineSensor.SensorM: ADC2_REGISTER, 
-        MyEnumLineSensor.SensorL1: ADC3_REGISTER, 
-        MyEnumLineSensor.SensorL2: ADC4_REGISTER,
+        [MyEnumLineSensor.SensorR2]: ADC0_REGISTER, 
+        [MyEnumLineSensor.SensorR1]: ADC1_REGISTER, 
+        [MyEnumLineSensor.SensorM]: ADC2_REGISTER, 
+        [MyEnumLineSensor.SensorL1]: ADC3_REGISTER, 
+        [MyEnumLineSensor.SensorL2]: ADC4_REGISTER,
     }
     
     const LEFT_LED_REGISTER = 0X0B;
@@ -156,11 +156,11 @@ namespace maqueenPlusV2 {
         Version_v = readVersion();
         if (!Version_v.includes("2.1")) {
             adc_index = {
-                MyEnumLineSensor.SensorL2: ADC0_REGISTER, 
-                MyEnumLineSensor.SensorL1: ADC1_REGISTER, 
-                MyEnumLineSensor.SensorM: ADC2_REGISTER, 
-                MyEnumLineSensor.SensorR1: ADC3_REGISTER, 
-                MyEnumLineSensor.SensorR2: ADC4_REGISTER,
+                [MyEnumLineSensor.SensorL2]: ADC0_REGISTER, 
+                [MyEnumLineSensor.SensorL1]: ADC1_REGISTER, 
+                [MyEnumLineSensor.SensorM]: ADC2_REGISTER, 
+                [MyEnumLineSensor.SensorR1]: ADC3_REGISTER, 
+                [MyEnumLineSensor.SensorR2]: ADC4_REGISTER,
             }
         basic.showLeds(`
                 . . . . .
