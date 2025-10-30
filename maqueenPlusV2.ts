@@ -162,6 +162,7 @@ namespace maqueenPlusV2 {
                 [MyEnumLineSensor.SensorR1]: ADC3_REGISTER, 
                 [MyEnumLineSensor.SensorR2]: ADC4_REGISTER,
             }
+        }
         basic.showLeds(`
                 . . . . .
                 . . . . #
