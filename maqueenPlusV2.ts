@@ -11,13 +11,13 @@ namespace maqueenPlusV2 {
         LeftMotor,
         //% block="right motor"
         RightMotor,
-        //% block="both motor"
+        //% block="both motors"
         BothMotor,
     };
 
     //Motor direction enumeration selection
     export enum MyEnumDir {
-        //% block="rotate forward"
+        //% block="forward"
         Forward,
         //% block="backward"
         Backward,
@@ -106,6 +106,7 @@ namespace maqueenPlusV2 {
     const ADC2_REGISTER = 0X22;
     const ADC3_REGISTER = 0X20;
     const ADC4_REGISTER = 0X1E;
+    
     const LEFT_LED_REGISTER = 0X0B;
     const RIGHT_LED_REGISTER = 0X0C;
     const LEFT_MOTOR_REGISTER = 0X00;
@@ -170,7 +171,7 @@ namespace maqueenPlusV2 {
      * @param speed  Motor speed control, eg:100
      */
 
-    //% block="motor %emotor move %edir at speed %speed"
+    //% block="start %emotor moving %edir at speed %speed"
     //% speed.min=0 speed.max=255
     //% weight=99
     export function controlMotor(emotor:MyEnumMotor, edir:MyEnumDir, speed:number):void{
@@ -206,7 +207,7 @@ namespace maqueenPlusV2 {
      * @param emotor Motor selection enumeration
      */
 
-    //% block="stop %emotor motor"
+    //% block="stop %emotor"
     //% weight=98
     export function controlMotorStop(emotor:MyEnumMotor):void{
         switch (emotor) {
