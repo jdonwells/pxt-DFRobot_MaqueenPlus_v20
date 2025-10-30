@@ -29,15 +29,15 @@ namespace maqueenPlusV2 {
         LeftLed,
         //% block="right led light"
         RightLed,
-        //% block="all led light"
+        //% block="both led lights"
         AllLed,
     };
 
     //LED light switch enumeration selection
     export enum MyEnumSwitch {
-        //% block="close"
+        //% block="off"
         Close,
-        //% block="open"
+        //% block="on"
         Open,
     };
 
@@ -100,6 +100,7 @@ namespace maqueenPlusV2 {
     }
 
     const I2CADDR = 0x10;
+    // V2.1 vlaues
     const ADC0_REGISTER = 0X26;
     const ADC1_REGISTER = 0X24;
     const ADC2_REGISTER = 0X22;
@@ -129,12 +130,12 @@ namespace maqueenPlusV2 {
     //%block="initialize via I2C until success"
     export function I2CInit(): void {
         let Version_v = 0;
-        //V3 systemReset
+        // V3 systemReset
         let allBuffer = pins.createBuffer(2);
         allBuffer[0] = 0x49;
         allBuffer[1] = 1;
         pins.i2cWriteBuffer(I2CADDR, allBuffer); 
-        basic.pause(100);//waiting  reset
+        basic.pause(100);    //waiting  reset
 
         pins.i2cWriteNumber(I2CADDR, 0x32, NumberFormat.Int8LE);
         Version_v = pins.i2cReadNumber(I2CADDR, NumberFormat.Int8LE);
@@ -169,7 +170,7 @@ namespace maqueenPlusV2 {
      * @param speed  Motor speed control, eg:100
      */
 
-    //% block="set %emotor direction %edir speed %speed"
+    //% block="motor %emotor move %edir at speed %speed"
     //% speed.min=0 speed.max=255
     //% weight=99
     export function controlMotor(emotor:MyEnumMotor, edir:MyEnumDir, speed:number):void{
@@ -205,7 +206,7 @@ namespace maqueenPlusV2 {
      * @param emotor Motor selection enumeration
      */
 
-    //% block="set %emotor stop"
+    //% block="stop %emotor motor"
     //% weight=98
     export function controlMotorStop(emotor:MyEnumMotor):void{
         switch (emotor) {
@@ -274,7 +275,7 @@ namespace maqueenPlusV2 {
 
     //% block="read line sensor %eline state"
     //% weight=96
-    export function readLineSensorState(eline:MyEnumLineSensor):number{
+    export function readLineSensorState(eline:MyEnumLineSensor):boolean {
         pins.i2cWriteNumber(I2CADDR, LINE_STATE_REGISTER, NumberFormat.Int8LE);
         let data = pins.i2cReadNumber(I2CADDR, NumberFormat.Int8LE)
         let state;
@@ -295,7 +296,7 @@ namespace maqueenPlusV2 {
                 state = (data & 0x01) == 0x01 ? 1 : 0;
             break;
         }
-        return state;
+        return state == 1;
     }
     
     /**
