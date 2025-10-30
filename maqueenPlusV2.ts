@@ -43,15 +43,15 @@ namespace maqueenPlusV2 {
 
     //Line sensor selection
     export enum MyEnumLineSensor {
-        //% block="L2"
+        //% block="left rear"
         SensorL2 = 0,
-        //% block="L1"
+        //% block="left"
         SensorL1,
-        //% block="M"
+        //% block="middle"
         SensorM,
-        //% block="R1"
+        //% block="right"
         SensorR1,
-        //% block="R2"
+        //% block="right rear"
         SensorR2,
     };
     /**
