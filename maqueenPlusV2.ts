@@ -1,7 +1,7 @@
 /**
  * Custom graphic block
  */
-//% weight=100 color=#0fbc11 icon="\uf067" block="MaqueenPlusV2.1"
+//% weight=100 color=#0fbc11 icon="\uf067" block="MaqueenPlusV2.0andV2.1"
 //% groups="['V3']"
 namespace maqueenPlusV2 {
 
