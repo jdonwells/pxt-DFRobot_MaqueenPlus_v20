@@ -165,6 +165,27 @@ namespace maqueenPlusV2 {
 
     /**
      * Control motor module running
+     * @param edir   Motor direction selection enumeration
+     * @param speed1  Motor speed control, eg:100
+     * @param speed2  Motor speed control, eg:100
+     */
+
+    //% block="start moving %edir left speed %speed1 right speed %speed2"
+    //% speed1.min=0 speed1.max=255
+    //% speed2.min=0 speed2.max=255
+    //% weight=99
+    export function controlMotors(edir:MyEnumDir, speed1:number, speed2:number):void{
+        let allBuffer = pins.createBuffer(5);
+        allBuffer[0] = LEFT_MOTOR_REGISTER;
+        allBuffer[1] = edir;
+        allBuffer[2] = speed1;
+        allBuffer[3] = edir;
+        allBuffer[4] = speed2;
+        pins.i2cWriteBuffer(I2CADDR, allBuffer)
+    }
+
+    /**
+     * Control motor module running
      * @param emotor Motor selection enumeration
      * @param edir   Motor direction selection enumeration
      * @param speed  Motor speed control, eg:100
