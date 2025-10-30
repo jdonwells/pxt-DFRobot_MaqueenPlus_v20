@@ -284,7 +284,7 @@ namespace maqueenPlusV2 {
      * @param eline Select the inspection sensor enumeration
      */
 
-    //% block="is sensor %eline on line?"
+    //% block="sensor %eline is on line?"
     //% weight=96
     export function readLineSensorState(eline:MyEnumLineSensor):boolean {
         pins.i2cWriteNumber(I2CADDR, LINE_STATE_REGISTER, NumberFormat.Int8LE);
